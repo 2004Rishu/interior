@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme {
+  --color-sand-50: #fdfbf7;
+  --color-sand-100: #f6f3eb;
+  --color-sand-200: #e8e2d4;
+  --color-sand-300: #d6ccb8;
+  --color-sand-400: #c2b49b;
+  --color-sand-500: #b2a083;
+  --color-sand-600: #a38c6c;
+  --color-sand-700: #887256;
+  --color-sand-800: #715f4a;
+  --color-sand-900: #5c4e3e;
+
+  --color-sage-50: #f4f6f4;
+  --color-sage-100: #e5e9e5;
+  --color-sage-200: #cad4ca;
+  --color-sage-300: #a4b5a4;
+  --color-sage-400: #7c937c;
+  --color-sage-500: #5f785f;
+  --color-sage-600: #4a5f4a;
+  --color-sage-700: #3d4d3d;
+
+  --color-charcoal-800: #2c2c2c;
+  --color-charcoal-900: #1a1a1a;
+  --color-charcoal-950: #0d0d0d;
+
+  --font-serif: "Playfair Display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-sand-50 text-charcoal-900 font-sans antialiased selection:bg-sage-200 selection:text-charcoal-950;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
