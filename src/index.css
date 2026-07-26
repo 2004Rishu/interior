@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
 
 @theme {
   --color-sand-50: #fdfbf7;
@@ -27,11 +28,42 @@
 
   --font-serif: "Playfair Display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-card: var(--card);
 }
 
 @layer base {
+  :root {
+    --background: var(--color-sand-50);
+    --foreground: var(--color-charcoal-900);
+    --primary: var(--color-charcoal-900);
+    --primary-foreground: #ffffff;
+    --muted: var(--color-sand-100);
+    --muted-foreground: var(--color-sand-600);
+    --border: var(--color-sand-200);
+    --card: #ffffff;
+  }
+
+  .dark {
+    --background: var(--color-charcoal-950);
+    --foreground: var(--color-sand-50);
+    --primary: var(--color-sand-50);
+    --primary-foreground: var(--color-charcoal-900);
+    --muted: var(--color-charcoal-800);
+    --muted-foreground: var(--color-sand-400);
+    --border: var(--color-charcoal-800);
+    --card: var(--color-charcoal-900);
+  }
+
   body {
-    @apply bg-sand-50 text-charcoal-900 font-sans antialiased selection:bg-sage-200 selection:text-charcoal-950;
+    @apply bg-background text-foreground font-sans antialiased selection:bg-sage-200 selection:text-charcoal-950 transition-colors duration-300;
   }
   
   h1, h2, h3, h4, h5, h6 {

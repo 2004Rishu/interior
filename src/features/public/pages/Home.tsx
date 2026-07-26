@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowRight, Star, ShieldCheck, MapPin } from 'lucide-react';
-import { MOCK_PROJECTS } from '../data';
+import { MOCK_PROJECTS } from '../../../api/mocks';
+import { AnimatedCounter } from '../../../components/ui/AnimatedCounter';
 
 export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative flex min-h-[90vh] items-center justify-center bg-sand-100 overflow-hidden">
+      <section className="relative flex min-h-[90vh] items-center justify-center bg-background overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=2000"
@@ -24,10 +25,10 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="max-w-3xl"
           >
-            <h1 className="text-4xl font-serif text-white sm:text-5xl md:text-7xl leading-tight">
+            <h1 className="text-4xl font-serif text-white sm:text-5xl md:text-7xl leading-tight drop-shadow-lg">
               The Right Designer for Your Home, <span className="italic text-sand-200">Matched for You.</span>
             </h1>
-            <p className="mt-6 max-w-xl text-lg text-sand-50 md:text-xl font-light">
+            <p className="mt-6 max-w-xl text-lg text-sand-50 md:text-xl font-light drop-shadow">
               Designing Spaces, Defining You. We hand-pick premium interior designers and epoxy flooring experts tailored to your style, budget, and vision.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4 md:justify-start justify-center">
@@ -49,11 +50,11 @@ export default function Home() {
       </section>
 
       {/* How It Works */}
-      <section className="bg-sand-50 py-24 md:py-32">
+      <section className="bg-background py-24 md:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16 md:mb-24">
-            <h2 className="text-3xl font-serif md:text-5xl text-charcoal-900">How It Works</h2>
-            <p className="mt-4 text-sand-700 text-lg">A refined, effortless process to bring your vision to life.</p>
+            <h2 className="text-3xl font-serif md:text-5xl text-foreground">How It Works</h2>
+            <p className="mt-4 text-muted-foreground text-lg">A refined, effortless process to bring your vision to life.</p>
           </div>
           
           <div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-8">
@@ -70,11 +71,11 @@ export default function Home() {
                 transition={{ delay: idx * 0.2, duration: 0.8 }}
                 className="flex flex-col items-center text-center group"
               >
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-sand-200 text-xl font-serif text-charcoal-900 transition-colors group-hover:bg-charcoal-900 group-hover:text-white">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted text-xl font-serif text-foreground transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                   {step.num}
                 </div>
-                <h3 className="mt-8 text-xl font-serif text-charcoal-900">{step.title}</h3>
-                <p className="mt-3 text-sand-700 max-w-xs">{step.desc}</p>
+                <h3 className="mt-8 text-xl font-serif text-foreground">{step.title}</h3>
+                <p className="mt-3 text-muted-foreground max-w-xs">{step.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -82,14 +83,14 @@ export default function Home() {
       </section>
 
       {/* Featured Projects */}
-      <section className="bg-sand-100 py-24 md:py-32">
+      <section className="bg-muted py-24 md:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
             <div className="max-w-2xl">
-              <h2 className="text-3xl font-serif md:text-5xl text-charcoal-900">Featured Spaces</h2>
-              <p className="mt-4 text-sand-700 text-lg">Curated projects from our network of premium designers.</p>
+              <h2 className="text-3xl font-serif md:text-5xl text-foreground">Featured Spaces</h2>
+              <p className="mt-4 text-muted-foreground text-lg">Curated projects from our network of premium designers.</p>
             </div>
-            <Link to="/designers" className="hidden md:inline-flex items-center text-charcoal-900 font-medium hover:text-sand-600 transition-colors">
+            <Link to="/designers" className="hidden md:inline-flex items-center text-foreground font-medium hover:text-muted-foreground transition-colors">
               View All Projects <ArrowRight size={18} className="ml-2" />
             </Link>
           </div>
@@ -115,10 +116,10 @@ export default function Home() {
                 </div>
                 <div className="mt-6 flex justify-between items-start">
                   <div>
-                    <h3 className="text-xl font-serif text-charcoal-900">{project.title}</h3>
-                    <p className="mt-1 text-sand-600">Designed by {project.designerName}</p>
+                    <h3 className="text-xl font-serif text-foreground">{project.title}</h3>
+                    <p className="mt-1 text-muted-foreground">Designed by {project.designerName}</p>
                   </div>
-                  <span className="inline-block bg-sand-200 px-3 py-1 text-xs font-medium text-charcoal-800 tracking-wide uppercase">
+                  <span className="inline-block bg-primary/10 px-3 py-1 text-xs font-medium text-foreground tracking-wide uppercase">
                     {project.style}
                   </span>
                 </div>
@@ -127,7 +128,7 @@ export default function Home() {
           </div>
           
           <div className="mt-12 md:hidden flex justify-center">
-             <Link to="/designers" className="inline-flex items-center text-charcoal-900 font-medium hover:text-sand-600 transition-colors">
+             <Link to="/designers" className="inline-flex items-center text-foreground font-medium hover:text-muted-foreground transition-colors">
               View All Projects <ArrowRight size={18} className="ml-2" />
             </Link>
           </div>
@@ -135,23 +136,29 @@ export default function Home() {
       </section>
 
       {/* Trust Section */}
-      <section className="bg-charcoal-900 py-24 md:py-32 text-white">
+      <section className="bg-primary py-24 md:py-32 text-primary-foreground">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-serif md:text-5xl mb-16">The Interior Me Standard</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
             <div className="flex flex-col items-center">
               <Star size={40} strokeWidth={1} className="text-sand-300 mb-6" />
-              <h3 className="text-4xl font-serif text-sand-100 mb-2">50+</h3>
+              <h3 className="text-4xl font-serif text-sand-100 mb-2">
+                <AnimatedCounter value={50} suffix="+" />
+              </h3>
               <p className="text-sand-400">Vetted Designers</p>
             </div>
             <div className="flex flex-col items-center">
               <MapPin size={40} strokeWidth={1} className="text-sand-300 mb-6" />
-              <h3 className="text-4xl font-serif text-sand-100 mb-2">12</h3>
+              <h3 className="text-4xl font-serif text-sand-100 mb-2">
+                <AnimatedCounter value={12} />
+              </h3>
               <p className="text-sand-400">Major Cities</p>
             </div>
             <div className="flex flex-col items-center">
               <ShieldCheck size={40} strokeWidth={1} className="text-sand-300 mb-6" />
-              <h3 className="text-4xl font-serif text-sand-100 mb-2">100%</h3>
+              <h3 className="text-4xl font-serif text-sand-100 mb-2">
+                <AnimatedCounter value={100} suffix="%" />
+              </h3>
               <p className="text-sand-400">Quality Guarantee</p>
             </div>
           </div>

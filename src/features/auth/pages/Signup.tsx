@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, Check } from 'lucide-react';
-import { useAuth, UserRole } from '../context/AuthContext';
+import { useAuth, UserRole } from '../../../context/AuthContext';
 
 export default function Signup() {
   const navigate = useNavigate();
