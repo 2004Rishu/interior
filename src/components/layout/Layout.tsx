@@ -1,14 +1,23 @@
-import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
-import { Menu, X, ArrowRight } from 'lucide-react';
-import { useState } from 'react';
+import { Link, NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
+import { Menu, X, ArrowRight, User, Moon, Sun } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { useAuth } from '../context/AuthContext';
-import logo from '../assets/logo.jpg';
+import { useAuth } from '../../context/AuthContext';
+import logo from '../../assets/logo.jpg';
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDark, setIsDark] = useState(false);
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDark]);
 
   const navLinks = [
     { name: 'For Clients', path: '/start-project' },
@@ -24,17 +33,17 @@ function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-sand-200 bg-sand-50/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-md transition-colors duration-300">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
           <div className="flex items-center">
-            <Link to="/" className="flex items-center gap-3 text-2xl font-serif tracking-tight text-charcoal-900 group">
+            <Link to="/" className="flex items-center gap-3 text-2xl font-serif tracking-tight text-foreground group">
               <img
                 src={logo}
                 alt="Interior Me Logo"
                 className="h-10 w-10 rounded-full object-cover border border-sand-300 transition-transform duration-300 group-hover:scale-105"
               />
-              <span className="font-semibold tracking-wide bg-gradient-to-r from-charcoal-900 via-charcoal-800 to-sand-700 bg-clip-text text-transparent">
+              <span className="font-semibold tracking-wide bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
                 Interior Me
               </span>
             </Link>
@@ -47,8 +56,8 @@ function Header() {
                 key={link.name}
                 to={link.path}
                 className={({ isActive }) =>
-                  `text-sm font-medium transition-colors hover:text-charcoal-900 ${
-                    isActive ? 'text-charcoal-900' : 'text-sand-700'
+                  `text-sm font-medium transition-colors hover:text-foreground ${
+                    isActive ? 'text-foreground' : 'text-muted-foreground'
                   }`
                 }
               >
@@ -60,13 +69,13 @@ function Header() {
               <>
                 <Link
                   to={`/dashboard/${user.role}`}
-                  className="text-sm font-medium transition-colors text-charcoal-900 hover:text-sand-600"
+                  className="text-sm font-medium transition-colors text-foreground hover:text-muted-foreground"
                 >
                   Dashboard
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="text-sm font-medium transition-colors text-sand-600 hover:text-charcoal-900"
+                  className="text-sm font-medium transition-colors text-muted-foreground hover:text-foreground"
                 >
                   Log Out
                 </button>
@@ -74,7 +83,7 @@ function Header() {
             ) : (
               <Link
                 to="/login"
-                className="text-sm font-medium transition-colors text-charcoal-900 hover:text-sand-600"
+                className="text-sm font-medium transition-colors text-foreground hover:text-muted-foreground"
               >
                 Log In
               </Link>
@@ -82,17 +91,25 @@ function Header() {
 
             <Link
               to="/start-project"
-              className="inline-flex h-10 items-center justify-center bg-charcoal-900 px-6 text-sm font-medium text-white transition-colors hover:bg-charcoal-800 ml-2"
+              className="inline-flex h-10 items-center justify-center bg-primary px-6 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 ml-2"
             >
               Start Project
             </Link>
+
+            <button
+              onClick={() => setIsDark(!isDark)}
+              className="ml-4 p-2 text-foreground hover:bg-muted rounded-full transition-colors focus:outline-none"
+              aria-label="Toggle dark mode"
+            >
+              {isDark ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
           </nav>
 
           {/* Mobile menu button */}
           <div className="flex items-center md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-charcoal-900 focus:outline-none"
+              className="text-foreground focus:outline-none"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>

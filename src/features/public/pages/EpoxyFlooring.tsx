@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, CheckCircle2, ShieldCheck, Zap, Layers } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Button } from '../../../components/ui/Button';
+import { Input } from '../../../components/ui/Input';
+import { Select } from '../../../components/ui/Select';
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '../../../components/ui/Card';
+import { Badge } from '../../../components/ui/Badge';
 
 export default function EpoxyFlooring() {
   const [submitted, setSubmitted] = useState(false);
@@ -12,7 +17,7 @@ export default function EpoxyFlooring() {
   };
 
   return (
-    <div className="bg-sand-50">
+    <div className="bg-background">
       {/* Hero */}
       <section className="relative flex min-h-[80vh] items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -41,12 +46,9 @@ export default function EpoxyFlooring() {
               Connect with vetted epoxy flooring specialists for residential garages, interior living spaces, and commercial showrooms. Starting at ₹150 / sq.ft.
             </p>
             <div className="mt-10">
-              <a
-                href="#quote-form"
-                className="inline-flex h-14 items-center justify-center bg-white px-8 text-sm font-medium text-charcoal-900 transition-colors hover:bg-sand-100"
-              >
-                Get a Free Estimate
-              </a>
+              <Button asChild size="lg" className="px-8 bg-white text-charcoal-900 hover:bg-sand-100">
+                <a href="#quote-form">Get a Free Estimate</a>
+              </Button>
             </div>
           </motion.div>
         </div>
@@ -56,8 +58,8 @@ export default function EpoxyFlooring() {
       <section className="py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
            <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-3xl font-serif md:text-4xl text-charcoal-900">Why Choose Epoxy?</h2>
-            <p className="mt-4 text-sand-700 text-lg">A modern flooring solution combining industrial-grade durability with high-end aesthetic appeal.</p>
+            <h2 className="text-3xl font-serif md:text-4xl text-foreground">Why Choose Epoxy?</h2>
+            <p className="mt-4 text-muted-foreground text-lg">A modern flooring solution combining industrial-grade durability with high-end aesthetic appeal.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -72,26 +74,70 @@ export default function EpoxyFlooring() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.2, duration: 0.8 }}
-                className="bg-white p-8 border border-sand-200 text-center flex flex-col items-center"
+                className="bg-card p-8 border border-border text-center flex flex-col items-center shadow-sm"
               >
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-sand-100 text-charcoal-900 mb-6">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted text-foreground mb-6">
                   <benefit.icon size={28} strokeWidth={1.5} />
                 </div>
-                <h3 className="text-xl font-serif text-charcoal-900 mb-3">{benefit.title}</h3>
-                <p className="text-sand-600 leading-relaxed">{benefit.desc}</p>
+                <h3 className="text-xl font-serif text-foreground mb-3">{benefit.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">{benefit.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Pricing Packages */}
+      <section className="py-24 bg-muted">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <h2 className="text-3xl font-serif md:text-4xl text-foreground">Transparent Pricing</h2>
+            <p className="mt-4 text-muted-foreground text-lg">Select a package that fits your space and budget.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { name: 'Standard Solid', price: '₹150/sq.ft', desc: 'Durable solid color epoxy perfect for basic garage or storage spaces.', features: ['Solid color finish', 'Light UV protection', '2-year warranty'] },
+              { name: 'Premium Flake', price: '₹250/sq.ft', desc: 'Decorative flake system offering high slip-resistance and aesthetic appeal.', features: ['Full broadcast flake', 'High UV resistance', '5-year warranty', 'Slip-resistant texture'], popular: true },
+              { name: 'Metallic Luxury', price: '₹400/sq.ft', desc: 'High-end artisan finish that mimics marble or natural stone.', features: ['Custom metallic pigments', 'Mirror-like high gloss', '10-year warranty', 'Premium topcoat'] }
+            ].map((pkg, idx) => (
+              <Card key={idx} className={pkg.popular ? 'border-primary ring-2 ring-primary relative' : ''}>
+                {pkg.popular && (
+                  <div className="absolute top-0 right-1/2 translate-x-1/2 -translate-y-1/2">
+                    <Badge variant="default">Most Popular</Badge>
+                  </div>
+                )}
+                <CardHeader className="text-center pt-8">
+                  <CardTitle>{pkg.name}</CardTitle>
+                  <p className="text-3xl font-serif mt-4 text-foreground">{pkg.price}</p>
+                  <p className="text-muted-foreground text-sm mt-2">{pkg.desc}</p>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-4 mt-6">
+                    {pkg.features.map((f, i) => (
+                      <li key={i} className="flex items-center text-sm text-foreground">
+                        <CheckCircle2 size={16} className="text-primary mr-2 flex-shrink-0" /> {f}
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+                <CardFooter className="pb-8">
+                  <Button variant={pkg.popular ? 'primary' : 'outline'} className="w-full" asChild>
+                    <a href="#quote-form">Select {pkg.name}</a>
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Use Cases Gallery */}
-      <section className="bg-sand-100 py-24">
+      <section className="bg-background py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
             <div className="max-w-xl">
-              <h2 className="text-3xl font-serif md:text-4xl text-charcoal-900">Versatile Applications</h2>
-              <p className="mt-4 text-sand-700 text-lg">Perfect for a variety of demanding environments.</p>
+              <h2 className="text-3xl font-serif md:text-4xl text-foreground">Versatile Applications</h2>
+              <p className="mt-4 text-muted-foreground text-lg">Perfect for a variety of demanding environments.</p>
             </div>
           </div>
 
@@ -140,7 +186,7 @@ export default function EpoxyFlooring() {
                </ul>
              </div>
 
-             <div className="lg:col-span-3 bg-white p-8 md:p-10 text-charcoal-900">
+             <div className="lg:col-span-3 bg-card p-8 md:p-10 text-foreground border border-border">
                {submitted ? (
                   <motion.div
                     initial={{ opacity: 0 }}
@@ -158,44 +204,28 @@ export default function EpoxyFlooring() {
                ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <label className="block text-sm font-medium text-charcoal-900 mb-2">Name</label>
-                        <input required type="text" className="block w-full border-b border-sand-300 bg-transparent py-2 focus:border-charcoal-900 focus:outline-none" />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-charcoal-900 mb-2">Phone</label>
-                        <input required type="tel" className="block w-full border-b border-sand-300 bg-transparent py-2 focus:border-charcoal-900 focus:outline-none" />
-                      </div>
+                      <Input required type="text" placeholder="Name" />
+                      <Input required type="tel" placeholder="Phone" />
                     </div>
                     
-                    <div>
-                      <label className="block text-sm font-medium text-charcoal-900 mb-2">Project Location (City, State)</label>
-                      <input required type="text" className="block w-full border-b border-sand-300 bg-transparent py-2 focus:border-charcoal-900 focus:outline-none" />
-                    </div>
+                    <Input required type="text" placeholder="Project Location (City, State)" />
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                       <div>
-                        <label className="block text-sm font-medium text-charcoal-900 mb-2">Space Type</label>
-                        <select required className="block w-full border-b border-sand-300 bg-transparent py-2 focus:border-charcoal-900 focus:outline-none">
-                          <option value="">Select space</option>
-                          <option value="garage">Garage</option>
-                          <option value="interior">Interior Floor</option>
-                          <option value="commercial">Commercial/Retail</option>
-                          <option value="other">Other</option>
-                        </select>
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-charcoal-900 mb-2">Approx. Area (sq.ft)</label>
-                        <input type="number" placeholder="e.g. 500" className="block w-full border-b border-sand-300 bg-transparent py-2 focus:border-charcoal-900 focus:outline-none" />
-                      </div>
+                       <Select
+                         required
+                         options={[
+                           { value: 'garage', label: 'Garage' },
+                           { value: 'interior', label: 'Interior Floor' },
+                           { value: 'commercial', label: 'Commercial/Retail' },
+                           { value: 'other', label: 'Other' },
+                         ]}
+                       />
+                       <Input type="number" placeholder="Approx. Area (sq.ft)" />
                     </div>
 
-                    <button
-                      type="submit"
-                      className="w-full bg-charcoal-900 py-4 text-sm font-medium text-white transition-colors hover:bg-charcoal-800 mt-4"
-                    >
+                    <Button type="submit" className="w-full mt-4">
                       Get Free Estimate
-                    </button>
+                    </Button>
                   </form>
                )}
              </div>
