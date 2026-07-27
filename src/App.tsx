@@ -9,6 +9,7 @@ import { AuthProvider } from './context/AuthContext';
 import { Layout } from './components/layout/Layout';
 import { RouteErrorBoundary } from './components/shared/ErrorBoundary';
 import Home from './features/public/pages/Home';
+import RoomDetails from './features/public/pages/RoomDetails';
 import StartProject from './features/client/pages/StartProject';
 import JoinNetwork from './features/designer/pages/JoinNetwork';
 import Designers from './features/public/pages/Designers';
@@ -38,6 +39,7 @@ const router = createBrowserRouter([
     errorElement: <RouteErrorBoundary />,
     children: [
       { index: true, element: <Home /> },
+      { path: 'room/:id', element: <RoomDetails /> },
       { path: 'start-project', element: <StartProject /> },
       { path: 'join-network', element: <JoinNetwork /> },
       { path: 'designers', element: <Designers /> },
