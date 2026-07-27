@@ -65,11 +65,12 @@ export const Step8Budget: React.FC = () => {
         {/* Priority Selection */}
         <div>
           <label className="text-sm font-medium text-foreground mb-4 block">What is your primary focus?</label>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {[
               { id: 'cost-effective', label: 'Cost Effective', desc: 'Focus on budget & utility' },
               { id: 'balanced', label: 'Balanced', desc: 'Quality within reason' },
-              { id: 'premium', label: 'Premium', desc: 'Luxury and high-end finish' }
+              { id: 'premium', label: 'Premium', desc: 'High-end finish' },
+              { id: 'luxury', label: 'Ultra Luxury', desc: 'Bespoke, no compromises' }
             ].map(opt => (
               <button
                 key={opt.id}

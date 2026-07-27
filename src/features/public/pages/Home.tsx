@@ -13,10 +13,8 @@ export default function Home() {
 
   const filteredRooms = ROOM_CATEGORIES.filter(room => room.category === activeTab);
   
-  // Handpick a few premium rooms for the infinite carousel at the top
-  const carouselRooms = ROOM_CATEGORIES.filter(r => 
-    ['living-2', 'kitchen-3', 'bedroom-3', 'bathroom-2', 'other-13'].includes(r.id)
-  );
+  // Dynamically update the premium spaces carousel based on the active tab from Explore Every Space
+  const carouselRooms = ROOM_CATEGORIES.filter(room => room.category === activeTab);
 
   // Handpick a few rooms for the masonry gallery
   const masonryRooms = [...ROOM_CATEGORIES].reverse().slice(0, 9);

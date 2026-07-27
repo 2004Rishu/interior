@@ -43,13 +43,13 @@ export const Step3HomeConfig: React.FC = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {options.map((option) => {
-          const isSelected = form.watch('property.propertyType') === option.id;
+          const isSelected = form.watch('homeConfig.configuration') === option.id;
           const Icon = option.icon;
           
           return (
             <div
               key={option.id}
-              onClick={() => form.setValue('property.propertyType', option.id, { shouldValidate: true })}
+              onClick={() => form.setValue('homeConfig.configuration', option.id, { shouldValidate: true })}
               className={`relative cursor-pointer rounded-xl border p-6 transition-all duration-300 ${
                 isSelected 
                   ? 'border-primary bg-primary/5 shadow-md' 
@@ -83,8 +83,8 @@ export const Step3HomeConfig: React.FC = () => {
         })}
       </div>
 
-      {form.formState.errors.property?.propertyType && (
-        <p className="mt-4 text-sm text-red-500">Please select a project type to continue.</p>
+      {form.formState.errors.homeConfig?.configuration && (
+        <p className="mt-4 text-sm text-red-500">Please select a project configuration to continue.</p>
       )}
 
       <div className="mt-10 flex justify-between">

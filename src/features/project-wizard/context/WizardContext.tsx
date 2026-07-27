@@ -80,18 +80,25 @@ export const WizardProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       
       // 2. Materials Cost 
       let materials = 0;
+      
+      // Dynamically assign per-room cost based on priority
+      let costPerRoom = 150000; // 'balanced' (medium): 1 to 2.5 Lakh range
+      
+      if (value.budget?.priority === 'cost-effective') {
+        costPerRoom = 50000; // 'cheap': 30k to 70k range
+      } else if (value.budget?.priority === 'premium') {
+        costPerRoom = 300000; // premium
+      } else if (value.budget?.priority === 'luxury') {
+        costPerRoom = 450000; // 'luxury': > 4 Lakh
+      }
+
       if (value.roomPlanner?.rooms?.length) {
-        materials += value.roomPlanner.rooms.length * 80000; // avg ₹80k per room for materials
+        materials += value.roomPlanner.rooms.length * costPerRoom;
       }
       
       // Smart Home features
       if (value.smartHome?.features?.length) {
         materials += value.smartHome.features.length * 25000; // ₹25k per smart feature
-      }
-
-      // Premium budget multiplier
-      if (value.budget?.priority === 'premium' || value.budget?.priority === 'luxury') {
-        materials *= 1.5;
       }
 
       // 3. Design Fee (8% of materials + base)

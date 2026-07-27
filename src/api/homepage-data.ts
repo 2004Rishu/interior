@@ -267,7 +267,7 @@ export const ROOM_CATEGORIES: RoomCategory[] = [
     startingPrice: '₹1.5L',
     completionTime: '3 Weeks',
     popularStyle: 'Classic Contemporary',
-    imageUrl: 'https://images.unsplash.com/photo-1559599101-f09722fb4948?auto=format&fit=crop&q=80&w=1200'
+    imageUrl: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&q=80&w=1200'
   },
   {
     id: 'other-2',
@@ -287,7 +287,7 @@ export const ROOM_CATEGORIES: RoomCategory[] = [
     startingPrice: '₹1.0L',
     completionTime: '2 Weeks',
     popularStyle: 'Minimalist',
-    imageUrl: 'https://images.unsplash.com/photo-1580227914488-824f96440f99?auto=format&fit=crop&q=80&w=1200'
+    imageUrl: 'https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?auto=format&fit=crop&q=80&w=1200'
   },
   {
     id: 'other-4',
@@ -307,7 +307,7 @@ export const ROOM_CATEGORIES: RoomCategory[] = [
     startingPrice: '₹2.2L',
     completionTime: '4 Weeks',
     popularStyle: 'Dark Academia',
-    imageUrl: 'https://images.unsplash.com/photo-1518461821870-7607a90b6ce7?auto=format&fit=crop&q=80&w=1200'
+    imageUrl: 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=1200'
   },
   {
     id: 'other-6',
@@ -317,7 +317,7 @@ export const ROOM_CATEGORIES: RoomCategory[] = [
     startingPrice: '₹0.8L',
     completionTime: '2 Weeks',
     popularStyle: 'Traditional Serene',
-    imageUrl: 'https://images.unsplash.com/photo-1499933374294-4584851497cc?auto=format&fit=crop&q=80&w=1200'
+    imageUrl: 'https://images.unsplash.com/photo-1542668595-fa9394e5b686?auto=format&fit=crop&q=80&w=1200'
   },
   {
     id: 'other-7',
@@ -327,7 +327,7 @@ export const ROOM_CATEGORIES: RoomCategory[] = [
     startingPrice: '₹0.6L',
     completionTime: '1 Week',
     popularStyle: 'Urban Garden',
-    imageUrl: 'https://images.unsplash.com/photo-1605814597371-b0db37b75b92?auto=format&fit=crop&q=80&w=1200'
+    imageUrl: 'https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&q=80&w=1200'
   },
   {
     id: 'other-8',
@@ -337,7 +337,7 @@ export const ROOM_CATEGORIES: RoomCategory[] = [
     startingPrice: '₹2.5L',
     completionTime: '4 Weeks',
     popularStyle: 'Luxury Outdoor',
-    imageUrl: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200'
+    imageUrl: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200'
   },
   {
     id: 'other-9',
@@ -347,7 +347,7 @@ export const ROOM_CATEGORIES: RoomCategory[] = [
     startingPrice: '₹4.0L',
     completionTime: '5 Weeks',
     popularStyle: 'Acoustic Premium',
-    imageUrl: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&q=80&w=1200'
+    imageUrl: 'https://images.unsplash.com/photo-1593642532400-2682810df593?auto=format&fit=crop&q=80&w=1200'
   },
   {
     id: 'other-10',
@@ -367,7 +367,7 @@ export const ROOM_CATEGORIES: RoomCategory[] = [
     startingPrice: '₹0.8L',
     completionTime: '2 Weeks',
     popularStyle: 'Bright Utility',
-    imageUrl: 'https://images.unsplash.com/photo-1604335398980-edad725b3997?auto=format&fit=crop&q=80&w=1200'
+    imageUrl: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=1200'
   },
   {
     id: 'other-12',
@@ -377,7 +377,7 @@ export const ROOM_CATEGORIES: RoomCategory[] = [
     startingPrice: '₹1.2L',
     completionTime: '2 Weeks',
     popularStyle: 'Sleek Auto',
-    imageUrl: 'https://images.unsplash.com/photo-1601633596706-538ea670be8e?auto=format&fit=crop&q=80&w=1200'
+    imageUrl: 'https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&q=80&w=1200'
   },
   {
     id: 'other-13',
@@ -397,7 +397,7 @@ export const ROOM_CATEGORIES: RoomCategory[] = [
     startingPrice: '₹1.8L',
     completionTime: '3 Weeks',
     popularStyle: 'Cozy Patio',
-    imageUrl: 'https://images.unsplash.com/photo-1531234975545-71c19b0de35b?auto=format&fit=crop&q=80&w=1200'
+    imageUrl: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&q=80&w=1200'
   },
   {
     id: 'other-15',
@@ -407,6 +407,6 @@ export const ROOM_CATEGORIES: RoomCategory[] = [
     startingPrice: '₹2.0L',
     completionTime: '4 Weeks',
     popularStyle: 'Lush Botanical',
-    imageUrl: 'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&q=80&w=1200'
+    imageUrl: 'https://images.pexels.com/photos/158028/benches-park-resting-place-nature-158028.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
   },
 ];

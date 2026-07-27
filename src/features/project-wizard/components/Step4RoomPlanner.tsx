@@ -25,10 +25,10 @@ export const Step4RoomPlanner: React.FC = () => {
   const handleAddRoom = (typeId: string, label: string) => {
     append({
       id: Math.random().toString(36).substring(7),
-      type: typeId,
-      name: label,
-      area: 0,
-      requirements: [],
+      roomType: typeId,
+      roomName: label,
+      priority: 'medium',
+      renovationRequired: true,
     });
   };
 
@@ -42,7 +42,7 @@ export const Step4RoomPlanner: React.FC = () => {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         {ROOM_TYPES.map((type) => {
           const Icon = type.icon;
-          const count = (fields as any[]).filter(f => f.type === type.id).length;
+          const count = (fields as any[]).filter(f => f.roomType === type.id).length;
           
           return (
             <button
@@ -71,7 +71,7 @@ export const Step4RoomPlanner: React.FC = () => {
           {fields.map((field: any, index) => (
             <div key={field.id} className="flex items-center justify-between bg-white p-4 rounded-xl border border-border shadow-sm">
               <div className="flex items-center gap-3">
-                <span className="text-sm font-medium text-foreground">{field.name}</span>
+                <span className="text-sm font-medium text-foreground">{field.roomName}</span>
               </div>
               <button
                 type="button"
