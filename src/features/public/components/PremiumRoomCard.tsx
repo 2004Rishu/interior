@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, Image as ImageIcon, Heart, Sparkles } from 'lucide-react';
 import { RoomCategory } from '../../../api/homepage-data';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AskAIModal } from './AskAIModal';
+import { useAuth } from '../../../context/AuthContext';
 
 interface PremiumRoomCardProps {
   room: RoomCategory;
@@ -11,6 +12,16 @@ interface PremiumRoomCardProps {
 
 export const PremiumRoomCard: React.FC<PremiumRoomCardProps> = ({ room }) => {
   const [isAIModalOpen, setIsAIModalOpen] = useState(false);
+  const { user, openLoginModal } = useAuth();
+  const navigate = useNavigate();
+
+  const handleAction = (action: () => void) => {
+    if (!user) {
+      openLoginModal();
+    } else {
+      action();
+    }
+  };
 
   return (
     <>
@@ -63,15 +74,21 @@ export const PremiumRoomCard: React.FC<PremiumRoomCardProps> = ({ room }) => {
 
               {/* Action Buttons */}
               <div className="flex flex-col gap-2">
-                <Link to={`/room/${room.id}`} className="flex items-center justify-center w-full h-12 bg-white text-charcoal-900 rounded-lg font-medium transition-colors hover:bg-sand-50">
+                <button 
+                  onClick={() => handleAction(() => navigate(`/room/${room.id}`))} 
+                  className="flex items-center justify-center w-full h-12 bg-white text-charcoal-900 rounded-lg font-medium transition-colors hover:bg-sand-50"
+                >
                   Explore Designs <ArrowRight size={16} className="ml-2" />
-                </Link>
+                </button>
                 <div className="flex gap-2">
-                  <button className="flex-1 flex items-center justify-center h-12 bg-charcoal-800/80 backdrop-blur-md text-white rounded-lg font-medium border border-white/10 transition-colors hover:bg-charcoal-700">
+                  <button 
+                    onClick={() => handleAction(() => console.log('Gallery opened'))}
+                    className="flex-1 flex items-center justify-center h-12 bg-charcoal-800/80 backdrop-blur-md text-white rounded-lg font-medium border border-white/10 transition-colors hover:bg-charcoal-700"
+                  >
                     <ImageIcon size={16} className="mr-2" /> Gallery
                   </button>
                   <button 
-                    onClick={() => setIsAIModalOpen(true)}
+                    onClick={() => handleAction(() => setIsAIModalOpen(true))}
                     className="flex-1 flex items-center justify-center h-12 bg-primary/20 backdrop-blur-md text-primary-foreground rounded-lg font-medium border border-primary/30 transition-colors hover:bg-primary/40"
                   >
                     <Sparkles size={16} className="mr-2 text-yellow-300" /> Ask AI
