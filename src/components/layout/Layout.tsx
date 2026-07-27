@@ -8,7 +8,7 @@ import logo from '../../assets/logo.jpg';
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
-  const { user, logout } = useAuth();
+  const { user, logout, openLoginModal } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -82,20 +82,27 @@ function Header() {
                 </button>
               </>
             ) : (
-              <Link
-                to="/login"
-                className="text-sm font-medium transition-colors text-foreground hover:text-muted-foreground"
+              <button
+                onClick={openLoginModal}
+                className="text-sm font-medium transition-colors text-foreground hover:text-muted-foreground cursor-pointer"
               >
                 Log In
-              </Link>
+              </button>
             )}
 
-            <Link
-              to="/start-project"
-              className="inline-flex h-10 items-center justify-center bg-primary px-6 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 ml-2"
+
+            <button
+              onClick={() => {
+                if (!user) {
+                  openLoginModal();
+                } else {
+                  navigate('/start-project');
+                }
+              }}
+              className="inline-flex h-10 items-center justify-center bg-primary px-6 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 ml-2 cursor-pointer"
             >
               Start Project
-            </Link>
+            </button>
 
             <button
               onClick={() => setIsDark(!isDark)}
@@ -162,13 +169,12 @@ function Header() {
                   </>
                 ) : (
                   <>
-                    <Link
-                      to="/login"
-                      onClick={() => setIsOpen(false)}
-                      className="block text-base font-medium text-charcoal-900 mb-4"
+                    <button
+                      onClick={() => { openLoginModal(); setIsOpen(false); }}
+                      className="block text-left text-base font-medium text-charcoal-900 mb-4 cursor-pointer"
                     >
                       Log In
-                    </Link>
+                    </button>
                     <Link
                       to="/signup"
                       onClick={() => setIsOpen(false)}
@@ -180,13 +186,19 @@ function Header() {
                 )}
               </div>
 
-              <Link
-                to="/start-project"
-                onClick={() => setIsOpen(false)}
-                className="mt-6 inline-flex h-12 items-center justify-center bg-charcoal-900 px-6 text-base font-medium text-white"
+              <button
+                onClick={() => {
+                  setIsOpen(false);
+                  if (!user) {
+                    openLoginModal();
+                  } else {
+                    navigate('/start-project');
+                  }
+                }}
+                className="mt-6 inline-flex h-12 items-center justify-center bg-charcoal-900 px-6 text-base font-medium text-white cursor-pointer"
               >
                 Start Project
-              </Link>
+              </button>
             </nav>
           </motion.div>
         )}

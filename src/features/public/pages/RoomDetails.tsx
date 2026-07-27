@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../context/AuthContext';
 import { motion } from 'motion/react';
 import { ArrowLeft, Clock, Wallet, Layout, Sparkles, ChevronRight, MessageSquareText } from 'lucide-react';
 import { ROOM_CATEGORIES } from '../../../api/homepage-data';
@@ -7,12 +8,22 @@ import { ROOM_CATEGORIES } from '../../../api/homepage-data';
 export default function RoomDetails() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { user, openLoginModal } = useAuth();
   
-  const room = ROOM_CATEGORIES.find((r) => r.id === id);
+  useEffect(() => {
+    if (!user) {
+      openLoginModal();
+      navigate('/', { replace: true });
+    }
+  }, [user, openLoginModal, navigate]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
+
+  if (!user) return null;
+
+  const room = ROOM_CATEGORIES.find((r) => r.id === id);
 
   if (!room) {
     return (

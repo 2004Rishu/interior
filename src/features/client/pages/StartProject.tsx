@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../context/AuthContext';
 import { motion, AnimatePresence } from 'motion/react';
 import { useWizard, WizardProvider } from '../../project-wizard/context/WizardContext';
 import { ProgressBar } from '../../../components/ui/ProgressBar';
@@ -151,6 +153,18 @@ const WizardContent = () => {
 };
 
 export default function StartProject() {
+  const { user, openLoginModal } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      openLoginModal();
+      navigate('/', { replace: true });
+    }
+  }, [user, openLoginModal, navigate]);
+
+  if (!user) return null;
+
   return (
     <WizardProvider>
       <WizardContent />
