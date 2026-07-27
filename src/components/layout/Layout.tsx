@@ -20,6 +20,7 @@ function Header() {
   }, [isDark]);
 
   const navLinks = [
+    { name: 'Home', path: '/' },
     { name: 'For Clients', path: '/start-project' },
     { name: 'For Designers', path: '/join-network' },
     { name: 'Browse Designers', path: '/designers' },
@@ -33,20 +34,20 @@ function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-md transition-colors duration-300">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 w-full border-b border-white/20 bg-white/30 backdrop-blur-xl shadow-sm transition-colors duration-300 dark:bg-black/30 dark:border-white/10">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
           <div className="flex items-center">
-            <Link to="/" className="flex items-center gap-3 text-2xl font-serif tracking-tight text-foreground group">
+            <div className="flex items-center gap-3 text-2xl font-serif tracking-tight text-foreground">
               <img
                 src={logo}
                 alt="Interior Me Logo"
-                className="h-10 w-10 rounded-full object-cover border border-sand-300 transition-transform duration-300 group-hover:scale-105"
+                className="h-10 w-10 rounded-full object-cover border border-sand-300"
               />
               <span className="font-semibold tracking-wide bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
                 Interior Me
               </span>
-            </Link>
+            </div>
           </div>
           
           {/* Desktop Nav */}
