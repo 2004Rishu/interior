@@ -56,13 +56,20 @@ const router = createBrowserRouter([
   },
 ]);
 
+import { LoginModal } from './features/auth/components/LoginModal';
+
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <RouterProvider router={router} />
-        <Toaster position="top-right" />
-      </AuthProvider>
-    </QueryClientProvider>
+    <GoogleOAuthProvider clientId="132721264540-sdv1pig14if99au4j0bji0b51baumjpv.apps.googleusercontent.com">
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <RouterProvider router={router} />
+          <Toaster position="top-right" />
+          <LoginModal />
+        </AuthProvider>
+      </QueryClientProvider>
+    </GoogleOAuthProvider>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, Star, ShieldCheck, MapPin } from 'lucide-react';
 import { AnimatedCounter } from '../../../components/ui/AnimatedCounter';
@@ -7,9 +7,20 @@ import { ROOM_CATEGORIES, RoomCategory } from '../../../api/homepage-data';
 import { PremiumRoomCard } from '../components/PremiumRoomCard';
 import { InfiniteCarousel } from '../components/InfiniteCarousel';
 import { MasonryGallery } from '../components/MasonryGallery';
+import { useAuth } from '../../../context/AuthContext';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<RoomCategory['category']>('Living');
+  const { user, openLoginModal } = useAuth();
+  const navigate = useNavigate();
+
+  const handleAuthNavigation = (path: string) => {
+    if (!user) {
+      openLoginModal();
+    } else {
+      navigate(path);
+    }
+  };
 
   const filteredRooms = ROOM_CATEGORIES.filter(room => room.category === activeTab);
   
@@ -46,18 +57,18 @@ export default function Home() {
               Designing Spaces, Defining You. We hand-pick premium interior designers and epoxy flooring experts tailored to your style, budget, and vision.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4 md:justify-start justify-center">
-              <Link
-                to="/start-project"
+              <button
+                onClick={() => handleAuthNavigation('/start-project')}
                 className="inline-flex h-14 items-center justify-center bg-white px-8 text-lg font-medium text-charcoal-900 transition-all hover:bg-sand-50 rounded-lg shadow-xl"
               >
                 Start Your Project
-              </Link>
-              <Link
-                to="/designers"
+              </button>
+              <button
+                onClick={() => handleAuthNavigation('/designers')}
                 className="inline-flex h-14 items-center justify-center border border-white/30 bg-white/10 px-8 text-lg font-medium text-white backdrop-blur-sm transition-all hover:bg-white/20 rounded-lg"
               >
                 Browse Portfolios
-              </Link>
+              </button>
             </div>
           </motion.div>
         </div>
@@ -114,12 +125,12 @@ export default function Home() {
           </motion.div>
           
           <div className="mt-16 text-center">
-             <Link
-                to="/start-project"
+             <button
+                onClick={() => handleAuthNavigation('/start-project')}
                 className="inline-flex h-14 items-center justify-center bg-charcoal-900 px-8 text-lg font-medium text-white transition-all hover:bg-charcoal-800 rounded-lg shadow-lg"
               >
                 Calculate Cost <ArrowRight size={20} className="ml-2" />
-              </Link>
+              </button>
           </div>
         </div>
       </section>
@@ -207,12 +218,12 @@ export default function Home() {
             Beyond interiors, we connect you with top-tier epoxy flooring professionals for homes, garages, and commercial spaces.
           </p>
           <div className="mt-10">
-             <Link
-                to="/epoxy-flooring"
+             <button
+                onClick={() => handleAuthNavigation('/epoxy-flooring')}
                 className="inline-flex h-14 items-center justify-center bg-charcoal-900 px-8 text-lg font-medium text-white transition-all hover:bg-charcoal-800 rounded-lg shadow-xl"
               >
                 Explore Epoxy Services
-              </Link>
+              </button>
           </div>
         </div>
       </section>
